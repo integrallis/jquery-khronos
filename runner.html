@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jasmine Test Runner</title>
+    <link rel="stylesheet" type="text/css" href="spec/lib/jasmine-1.1.2/jasmine.css">
+    <link rel="stylesheet" type="text/css" href="lib/tempus.css">
+    <script type="text/javascript" src="spec/lib/jasmine-1.1.2/jasmine.js"></script>
+    <script type="text/javascript" src="spec/lib/jasmine-1.1.2/jasmine-html.js"></script>
+
+    <script src="spec/lib/jquery-1.7.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="spec/lib/jasmine-jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="spec/lib/tempus-spec.js" type="text/javascript" charset="utf-8"></script>
+    
+    <script src="lib/tempus.js" type="text/javascript" charset="utf-8"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+      jasmine.getEnv().execute();
+    </script>
+  </body>
+</html>
