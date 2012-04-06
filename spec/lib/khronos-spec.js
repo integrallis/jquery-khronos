@@ -5,48 +5,48 @@
       setFixtures(sandbox());
       this.input = $('<input id="time-input" type="text" name="input" value>');
       $('#sandbox').append(this.input);
-      this.input.tempus();
-      return this.tempus = $.data($('#time-input')[0], 'plugin_tempus');
+      this.input.khronos();
+      return this.khronos = $.data($('#time-input')[0], 'plugin_khronos');
     });
     it("appends the time unit elements to the container", function() {
       var children;
       this.input.focus();
-      children = $('.tempus-container').children();
+      children = $('.khronos-container').children();
       return expect(children.length).toEqual(12 + 4 + 4 + 2);
     });
     it("displays the container element only on focus", function() {
-      expect($('.tempus-container')).not.toExist();
+      expect($('.khronos-container')).not.toExist();
       this.input.focus();
-      return expect($('.tempus-container')).toBeVisible();
+      return expect($('.khronos-container')).toBeVisible();
     });
     it("hides the container element on blur", function() {
       this.input.focus();
       this.input.blur();
-      return expect($('.tempus-container')).toBeHidden();
+      return expect($('.khronos-container')).toBeHidden();
     });
     it("builds an individual am/pm unit element", function() {
       var unit;
-      unit = this.tempus.buildUnit('ampm', 'am');
-      return expect(unit).toEqual("<div class='tempus-unit' data-unit='ampm' data-value='am'>am</div>");
+      unit = this.khronos.buildUnit('ampm', 'am');
+      return expect(unit).toEqual("<div class='khronos-unit' data-unit='ampm' data-value='am'>am</div>");
     });
     it("builds an individual hour element", function() {
       var unit;
-      unit = this.tempus.buildUnit('hour', 5);
-      return expect(unit).toEqual("<div class='tempus-unit' data-unit='hour' data-value='5'>5</div>");
+      unit = this.khronos.buildUnit('hour', 5);
+      return expect(unit).toEqual("<div class='khronos-unit' data-unit='hour' data-value='5'>5</div>");
     });
     it("builds an individual minute element", function() {
       var unit;
-      unit = this.tempus.buildUnit('minute', 15);
-      return expect(unit).toEqual("<div class='tempus-unit' data-unit='minute' data-value='15'>15</div>");
+      unit = this.khronos.buildUnit('minute', 15);
+      return expect(unit).toEqual("<div class='khronos-unit' data-unit='minute' data-value='15'>15</div>");
     });
     it("builds an individual second element", function() {
       var unit;
-      unit = this.tempus.buildUnit('second', 30);
-      return expect(unit).toEqual("<div class='tempus-unit' data-unit='second' data-value='30'>30</div>");
+      unit = this.khronos.buildUnit('second', 30);
+      return expect(unit).toEqual("<div class='khronos-unit' data-unit='second' data-value='30'>30</div>");
     });
     it("builds the correct elements", function() {
       var ampmCount, hourCount, minuteCount, secondCount, t, unitTypes, units, _i, _j, _k, _l, _len, _len2, _len3, _len4;
-      units = this.tempus.buildUnits();
+      units = this.khronos.buildUnits();
       unitTypes = $(units).map(function(i, el) {
         return $(el).data('unit');
       });
@@ -75,21 +75,22 @@
     it("position the container absolutely", function() {
       var cssPosition;
       this.input.focus();
-      cssPosition = $('.tempus-container').css('position');
+      cssPosition = $('.khronos-container').css('position');
       return expect(cssPosition).toEqual('absolute');
     });
     it("positions the container below the input with configurable margin", function() {
       var top;
       this.input.focus();
-      top = $('.tempus-container').position().top;
-      return expect(top).toEqual(this.input.position().top + this.input.outerHeight() + this.tempus.config.containerMargin);
+      top = $('.khronos-container').position().top;
+      return expect(top).toEqual(this.input.position().top + this.input.outerHeight() + this.khronos.config.containerMargin);
     });
-    return it("position aligns the left edges of the container and the input", function() {
+    it("vertically aligns the left edges of the container and the input", function() {
       var left;
       this.input.focus();
-      left = $('.tempus-container').position().left;
+      left = $('.khronos-container').position().left;
       return expect(left).toEqual(this.input.position().left);
     });
+    return it("", function() {});
   });
 
 }).call(this);

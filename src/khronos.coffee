@@ -1,7 +1,5 @@
 #  Project: Tempus jQuery Plugin
 #  Description: quick, intuitive time input tool
-#  Author: Danny Whalen
-#  License: MIT
 
 # Note that when compiling with coffeescript, the plugin is wrapped
 # in another anonymous function. We do not need to pass in undefined
@@ -12,7 +10,7 @@
   # more efficiently minified.
 
   # Create the defaults once
-  pluginName = 'tempus'
+  pluginName = 'khronos'
   defaults =
     containerMargin: 4
 
@@ -21,6 +19,11 @@
     constructor: (element, options) ->
       @self = $(element)
       @config = $.extend {}, defaults, options
+      @units =
+        ampm: ['am','pm']
+        hour: [12,1,2,3,4,5,6,7,8,9,10,11]
+        minute: [0,15,30,45]
+        second: [0,15,30,45]
       @init()
 
     init: ->
@@ -38,24 +41,22 @@
       @focus()
 
     buildDisplay: ->
-      @container = $("<div class='tempus-container'></div>")
+      @container = $("<div class='khronos-container'></div>")
+      @container.appendTo(@self.parent()).position(@containerPosition())
       @container[0].innerHTML = @buildUnits()
-      @container.appendTo(@self.parent())
 
     buildUnits: ->
       units = []
-      units.push(@buildUnit('ampm', ampm)) for ampm in ['am', 'pm']
-      units.push(@buildUnit('hour', hour)) for hour in [1..12]
-      units.push(@buildUnit('minute', minute)) for minute in [0, 15, 30, 45]
-      units.push(@buildUnit('second', second)) for second in [0, 15, 30, 45]
+      for unitType in ['ampm', 'hour', 'minute', 'second']
+        units.push(@buildUnit(unitType, val)) for val in @units[unitType]
       units.join('')
 
     buildUnit: (unit, value) ->
-      "<div class='tempus-unit' data-unit='#{unit}' data-value='#{value}'>#{value}</div>"
+      "<div class='khronos-unit' data-unit='#{unit}' data-value='#{value}'>#{value}</div>"
         
-    container_position: ->
+    containerPosition: ->
       position =
-        left: 12 #@self.position().left
+        left: @self.position().left
         top: @self.position().top + @self.outerHeight() + @config.containerMargin
 
   # A really lightweight plugin wrapper around the constructor,

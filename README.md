@@ -1,8 +1,8 @@
-Tempus
+Khronos
 =============
 ```javascript
 $(document).ready(function() {
-  $('#time-input').tempus();
+  $('#time-input').khronos();
 });
 ```
 

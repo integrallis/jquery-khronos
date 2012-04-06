@@ -1,8 +1,8 @@
-.tempus-container {
+.khronos-container {
   display: none;
   position: absolute;
   border: solid red 2px;
 }
-.tempus-container .tempus-unit {
+.khronos-container .khronos-unit {
   position: absolute;
 }
